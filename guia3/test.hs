@@ -24,3 +24,7 @@ funcion 0 = 0
 funcion 5 = 10
 funcion (-4) = -7
 funcion n = 10000
+
+
+--div x y   da resultado de div entera
+--mod x y   da resto de div enteraS
