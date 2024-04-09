@@ -44,14 +44,14 @@ algunoEs0 x y | x == 0 || y == 0 = True
 algunoEs0pm:: Float -> Float -> Bool --PM Pattern Matching
 algunoEs0pm 0 y = True
 algunoEs0pm x 0 = True
-algunoEs0pm x y = true
+algunoEs0pm x y = False
 
 {-E)
 problema AmbosSon0 (x,y: R): Bool
     Requiere:{True}
     Asegura:{Res = True, si X y Y son 0}
 -}
-ambosSon0 :: Float -> Float -> Bool
+ambosSon0 :: Float -> Float -> Bool -- falta pattern matchin
 ambosSon0 x y | x == 0 && y == 0 = True
               | otherwise = False
 
@@ -100,8 +100,7 @@ digitoUnidades n|n >= 0 = mod n 10
 {-J)
 problema digitoDecenas (x,y: N): bool
     Requiere:{True}
-    Asegura:{Res = ultimos 2 numeros}
+    Asegura:{Res = El valor de la decena}
 -}
 digitoDecenas:: Int -> Int
-digitoDecenas n|n >= 0 = mod n 100
-               |otherwise = mod n (-100)
+digitoDecenas x  = div(mod (absoluto x) 100 - digitoUnidades (absoluto x)) 10
