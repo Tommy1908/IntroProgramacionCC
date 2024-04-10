@@ -52,6 +52,16 @@ sumarSoloMultiplos (a,b,c) n | esMultiploDe a n && esMultiploDe b n && esMultipl
                              | esMultiploDe c n= c
                              | otherwise = 0
 
+--MEJOR IDEA, CON AYUDA DEL PROFE
+
+esMultiplo :: Int -> Int -> Int --Si es multiplo devuelve el numero, sino 0
+esMultiplo x y | mod x y == 0 = x
+               | otherwise = 0
+
+sumarSoloMultiplosMejor :: (Int,Int,Int) -> Int -> Int
+sumarSoloMultiplosMejor (a,b,c) n = ((esMultiplo a n) + (esMultiplo b n) + (esMultiplo c n))
+
+
 {-posPrimerPar: dada una terna de enteros, devuelve la posici´on del primer n´umero par si es que hay alguno, y devuelve
 4 si son todos impares.-}
 posPrimerPar :: (Int,Int,Int) -> Int
