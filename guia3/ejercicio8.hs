@@ -15,10 +15,16 @@ comparar 2312 7 ⇝ 1 porque 2312 ≺ 7 y 1 + 2 < 0 + 7.
 comparar 45 172 ⇝ 0 porque no vale 45 ≺ 172 ni tampoco 172 ≺ 45.--}
 
 sumaUltimosDosDigitos :: Int -> Int
-sumaUltimosDosDigitos x =  (mod (absoluto x) 10) + (mod ( (div (absoluto x) 10)) 10)
-
+sumaUltimosDosDigitos x =  (mod (absoluto x) 10) + (mod (div (absoluto x) 10) 10)
+--Mod x 10 te devuelve el ultimo numero
+--Div x 10 te saca el ultimo numero
 
 absoluto:: Int -> Int
 absoluto 0 = 0
 absoluto x| x < 0 = -x
-          | otherwise = x 
+          | otherwise = x
+
+comparar:: Int -> Int -> Int
+comparar x y | sumaUltimosDosDigitos x < sumaUltimosDosDigitos y = 1
+             | sumaUltimosDosDigitos x > sumaUltimosDosDigitos y = -1
+             | otherwise = 0
