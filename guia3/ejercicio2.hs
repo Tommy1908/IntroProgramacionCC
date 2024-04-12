@@ -94,8 +94,7 @@ problema digitoUnidades (x,y: N): bool
     Asegura:{Res = ultimo numero}
 -}
 digitoUnidades:: Int -> Int
-digitoUnidades n|n >= 0 = mod n 10
-                |otherwise = mod n (-10)
+digitoUnidades n = mod (absoluto n) 10
 
 {-J)
 problema digitoDecenas (x,y: N): bool
@@ -103,4 +102,4 @@ problema digitoDecenas (x,y: N): bool
     Asegura:{Res = El valor de la decena}
 -}
 digitoDecenas:: Int -> Int
-digitoDecenas x  = div(mod (absoluto x) 100 - digitoUnidades (absoluto x)) 10
+digitoDecenas n  = mod (absoluto n) 100

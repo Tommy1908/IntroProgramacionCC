@@ -13,5 +13,7 @@ estanRelacionados 7 3 ⇝ False porque no existe un k entero tal que 72 + 7 × 3
 --Como no puedo comprobar si un numero es float, voy a verificar que el resultado es el mismo con el K resultante
 -- (div (-(a*a)) (a*b)) = K          
 ------------yo puedo crear una variable dentro de mi codigo? ----ej estanRelacionados a b  |a/=0 && b/=0 = (k=(div (-(a*a)) (a*b)))----
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 estanRelacionados :: Int -> Int -> Bool 
-estanRelacionados a b  |a/=0 && b/=0 = (a * a) + (a * b * (div (-(a*a)) (a*b))) == 0
+estanRelacionados a b  |a /= 0 && b /= 0 = (a * a) + (a * b * k) == 0
+                        where k = (div (-(a*a))) (a*b)
