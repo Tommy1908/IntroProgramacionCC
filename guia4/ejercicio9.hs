@@ -1,0 +1,1 @@
+--Ejercicio 9. Especificar e implementar una funci´on esCapicua :: Integer ->Bool que dado n ∈ N≥0 determina si n es un numero capicua.
