@@ -13,5 +13,11 @@ asegura: { n ̸= 0 → (n div 10resultado−1 > 0 ∧ n div 10resultado = 0) }
 --}
 
 cantDigitos :: Int -> Int
-cantDigitos 0 = 1
-cantDigitos x = 
+cantDigitos x | x < 10 = 1
+cantDigitos x | otherwise = 1 + cantDigitos(div x 10)
+
+--1234 primer=1 segundo=2 ...
+iesimoDigito :: Int -> Int -> Int
+iesimoDigito n i = mod (div n (10^((cantDigitos n)-i))) 10
+
+--IesimoDigito no tiene recursion, no esta mal, pero seria mejor hacerse con recursion
