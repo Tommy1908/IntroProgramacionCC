@@ -7,13 +7,12 @@
 
 -- n >= 0
 
-factorial :: (Num t , Eq t) => t -> t
---factorial :: (Num t, Eq t, Num t1, Eq t1) => t -> t1
---factorial :: Int -> Int
+factorial :: Int -> Int
 factorial 0 = 1
 factorial 1 = 1
 factorial n = n * factorial(n-1)
 
 eAprox :: Int -> Float
-eAprox 1 = 1
-eAprox n = (1/factorial n) + eAprox(n-1)
+eAprox 0 = 1
+eAprox n = (1/fromIntegral(factorial n)) + eAprox(n-1)
+--From Integral lleva un Int a un tipo 'Num' que lo hace valido para ser divido con la division de floats
