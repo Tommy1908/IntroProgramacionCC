@@ -10,17 +10,18 @@ asegura: { resultado es el mayor de los digitos pares de n. Si n no tiene ningun
 -- 888 = 8
 -- 111 = -1
 
-mayorDigitoPar :: Int -> Int
-mayorDigitoPar x | x < 10 =
-                 | x
 
-esMayorDigitos :: Int -> Int
-esMayorDigitos x | ultimoDigito >= anteultimoDigito = ultimoDigito
-                 | otherwise = anteultimoDigito
+
+
+--    x      i         con i empezando en 0
+soloPares :: Int -> Int -> Int
+soloPares x i | mod ultimoDigito 2 == 0 && x < 10 = x * (10^i)
+              | mod ultimoDigito 2 == 0 = ultimoDigito * (10^i) + soloPares (sacarUltimoDigito x) (i+1)
+              | otherwise = soloPares (sacarUltimoDigito x) i
                   where ultimoDigito = mod x 10
-                        anteultimoDigito = div(mod x 100) 10
+--Devuelve el numero con solo digitos pares. x * (10^i) pone el digito en posicion correcta
 
---         i=1    x
-soloPar :: Int -> Int -> Int
-soloPar i x | mod x 2 == 0 = soloPar (10^i) x
-soloPar i x | mod x 2 /= 0 = div x 10
+sacarUltimoDigito :: Int -> Int
+sacarUltimoDigito x = div x 10
+
+mayorDigito
