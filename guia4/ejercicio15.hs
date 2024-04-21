@@ -8,5 +8,5 @@ sumaRacionales n m = sumatoriaM n m + sumaRacionales (n-1) m
 
 --             n      m
 sumatoriaM :: Int -> Int -> Float --Se encarga de M, recibe N
-sumatoriaM n 1 = fromIntegral(n) -- n/1
-sumatoriaM n m = n/(fromIntegral m) + sumatoriaM n (m-1)
+sumatoriaM n 1 = fromIntegral n -- n/1
+sumatoriaM n m = (fromIntegral n)/(fromIntegral m) + sumatoriaM n (m-1)	
