@@ -42,3 +42,16 @@ contadorY i j y | esDivisor j y = i==j || contadorY i (j-1) y --Divisor | Con un
 
 esDivisor :: Int -> Int -> Bool --X es divisor de Y
 esDivisor x y = mod y x == 0
+
+--d) Implementar la funcion nEsimoPrimo :: Integer ->Integer
+--que devuelve el n-esimo primo (n ≥ 1). Recordar que el primer primo es el 2, el segundo es el 3, el tercero es el 5, etc.
+
+nEsimoPrimo :: Int -> Int
+nEsimoPrimo n = encontrarPrimo 2 1 n
+
+--                p      i      n
+encontrarPrimo:: Int -> Int -> Int -> Int
+encontrarPrimo p i n | esPrimo p && i == n = p
+                     | esPrimo p = encontrarPrimo (p+1) (i+1) n
+                     | otherwise = encontrarPrimo (p+1) i n
+-- p es el primo de pruebas, i un contador, y n el contador objetivo
