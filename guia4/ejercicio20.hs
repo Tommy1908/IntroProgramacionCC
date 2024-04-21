@@ -1,0 +1,2 @@
+--Ejercicio 20. Especificar e implementar la funcion tomaValorMax :: Int ->Int ->Int
+--que dado un numero entero n1 ≥ 1 y un n2 ≥ n1 devuelve algun m entre n1 y n2 tal que sumaDivisores(m) = max{sumaDivisores(i) | n1 ≤ i ≤ n2}
