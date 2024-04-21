@@ -34,15 +34,15 @@ nEsimoPrimo n = encontrarPrimo 2 1 n
 -- 58 con m=7 
 -- 12 = False porque m=3 es menor y m=4 es mayor
 
-{- esSumaInicialDePrimos :: Int -> Bool
-esSumaInicialDePrimos x = esSumaInicialDePrimosAux x 1  -}
+esSumaInicialDePrimos :: Int -> Bool
+esSumaInicialDePrimos x = esSumaInicialDePrimosAux x 1
 
---                           x      i     suma
-{- esSumaInicialDePrimosAux :: Int -> Int -> Int -> Bool
-esSumaInicialDePrimosAux x i | nEsimoPrimo i > x = False
-                             | nEsimoPrimo i == x = True
+--                           x      i           i puede iniciarse desde 1 o 0
+esSumaInicialDePrimosAux :: Int -> Int -> Bool
+esSumaInicialDePrimosAux x i | sumaPrimos i > x = False
+                             | sumaPrimos i == x = True
                              | otherwise = esSumaInicialDePrimosAux x (i+1)
- -}
+ 
 sumaPrimos :: Int -> Int
 sumaPrimos 0 = 0
 sumaPrimos i = nEsimoPrimo i + sumaPrimos (i-1)
