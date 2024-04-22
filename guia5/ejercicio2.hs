@@ -1,10 +1,23 @@
+---Seguro sea util-----
+longitud :: [t] -> Int
+longitud [] = 0
+longitud a = 1 + longitud(tail a)
+
 
 pertenece :: (Eq t) => t -> [t] -> Bool
 pertenece _ [] = False
 pertenece n (x:xs) | n == x = True
                    | otherwise = pertenece n xs
 
+todosIguales :: (Eq t) => [t] -> Bool
+todosIguales [] = False --Digo yo eh
+todosIguales (x:xs) | longitud (x:xs) == 1 = True --El ultimo ya fue comparado
+                    | otherwise = pertenece x xs && todosIguales xs
 
+todosDistintos :: (Eq t) => [t] -> Bool
+todosDistintos [] = False --Digo yo eh
+todosDistintos (x:xs) | longitud (x:xs) == 1 = True --El ultimo ya fue comparado
+                      | otherwise = not(pertenece x xs) && todosDistintos xs
 
 hayRepetidos :: (Eq t) => [t] -> Bool
 hayRepetidos [] = False
@@ -34,9 +47,9 @@ esMaximo x y | x >= y = x
 --                   | otherwise = maximo(y:xs) 
 ----------------------------------------------------
 --Seria mejor usar quitar todos pero no lo tengo ahora, asi que desp lo cambiamos
-ordenar :: [Int] -> [Int] --De menor a mayor ERA! ESTA MAL
-ordenar [] = []
-ordenar (x:xs) = 
+--ordenar :: [Int] -> [Int] --De menor a mayor ERA! ESTA MAL
+--ordenar [] = []
+--ordenar (x:xs) = 
     --ordenar (quitar maximo(x:xs) (x:xs)) ++ maximo(x:xs)
     --maximo(x:xs) : ordenar(quitar (maximo(x:xs)) (x:xs))
  
