@@ -1,9 +1,4 @@
-sumatoria :: Int -> Int
-sumatoria i | i==0 = 0
-            | otherwise = i + sumatoria (i-1)
+a = [1, 2, 3, 4] :: [Int]
+b = [7,8,9] :: [Int]
 
-
-sumaLosPrimerosNImpares :: Integer -> Integer
-sumaLosPrimerosNImpares n | n == 1 = 1
-                          | n > 1 = n_esimoImpar + sumaLosPrimerosNImpares (n-1)
-                        where n_esimoImpar = 2*n - 1
+c = head b
