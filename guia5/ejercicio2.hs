@@ -32,3 +32,12 @@ quitar _ [] = []
 quitar n (x:xs) | n == x = xs
                 | otherwise = x:quitar n xs
 
+quitarTodos :: (Eq t ) => t -> [t] -> [t]
+quitarTodos _ [] = []
+quitarTodos n (x:xs) | x == n = quitarTodos n xs
+                     | otherwise = x : quitarTodos n xs
+
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) | pertenece x xs = x : eliminarRepetidos(quitarTodos x xs)
+                         | otherwise = x: eliminarRepetidos xs
