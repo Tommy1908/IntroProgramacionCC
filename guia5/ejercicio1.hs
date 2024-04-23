@@ -4,7 +4,7 @@
 
 longitud :: [t] -> Int
 longitud [] = 0
-longitud a = 1 + longitud(tail a)
+longitud (x:xs) = 1 + longitud xs
 
 --2. ultimo :: [t] -> t // Ultimo elemento
 
