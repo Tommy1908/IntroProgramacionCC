@@ -1,7 +1,7 @@
 ---Seguro sea util-----
 longitud :: [t] -> Int
 longitud [] = 0
-longitud a = 1 + longitud(tail a)
+longitud (x:xs) = 1 + longitud xs
 
 reverso :: [t] -> [t]
 reverso [] = []
@@ -31,7 +31,6 @@ hayRepetidos (x:xs) | longitud (x:xs) <= 1 = False
                     | pertenece x xs = True
                     | otherwise = hayRepetidos xs
 
-
 --SACA SOLO 1 VEZ
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar _ [] = []
@@ -49,11 +48,21 @@ eliminarRepetidos (x:xs) | pertenece x xs = x : eliminarRepetidos(quitarTodos x 
                          | otherwise = x: eliminarRepetidos xs
 
 mismosElementos :: (Eq t) => [t] -> [t] -> Bool
-mismosElementos [] [] = True --Digo yo
+mismosElementos [] [] = True
 mismosElementos [] _ = False
-mismosElementos (x:xs) l | longitud (x:xs) == 1 = pertenece x l
-                         | pertenece x l = True && mismosElementos xs l
-                         | otherwise = False 
+mismosElementos _ [] = False
+mismosElementos (x:xs) (y:ys) | pertenece x (y:ys) = True && (mismosElementos (quitarTodos x xs) (quitarTodos x (y:ys)))
+                              | otherwise = False
 
 capicua :: (Eq t) => [t] -> Bool
 capicua l = l == reverso l
+
+
+--Adicional, me equivoque en un ejercicio y quedo esto-------------
+aPertenceaB :: (Eq t) => [t] -> [t] -> Bool
+aPertenceaB [] [] = True --Digo yo
+aPertenceaB [] _ = False
+aPertenceaB (x:xs) l | longitud (x:xs) == 1 = pertenece x l
+                     | pertenece x l = True && aPertenceaB xs l
+                     | otherwise = False 
+-------------------------------------------------------------------
