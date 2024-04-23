@@ -3,6 +3,8 @@
 holaMundo = ['h','o','l','a',' ',' ','m','u','n','d','o'] :: [Char]
 l1 = [' ',' ','h','o','l','a','!',' ',' ',' '] :: [Char]
 l2 = [' ','L','I','S','t','a','d','o']
+l3 = [' ','L','I','S','t','a','d','o',' ',' ','h','o','l','a','!',' ',' ',' ','h','o','l','a',' ',' ','m','u','n','d','o']
+
 
 --a)
 sacarBlancosRepetidos :: [Char] -> [Char]
@@ -42,4 +44,14 @@ contarPalabrasSBR (x:xs) | x == ' ' = 1  +  contarPalabrasSBR xs
                          | otherwise = contarPalabrasSBR xs
 
 --c) -- dada una lista arma una nueva lista con las palabras de la lista original.
+--[]++[1]++[2] == [1,2]
 
+palabras::[Char] -> [[Char]]
+palabras [] = []
+palabras l = palabrasAux(limpiarLista l) []
+
+--              Lista    Vacio
+palabrasAux :: [Char] -> [Char] -> [[Char]]
+palabrasAux [] palabra = [palabra]
+palabrasAux (x:xs) palabra | x /= ' ' = palabrasAux xs (palabra ++ [x])
+                           | otherwise = [palabra] ++ (palabrasAux xs [])
