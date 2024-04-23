@@ -8,10 +8,14 @@ productoria :: [Int] -> Int --Multiplica cada elemento de la lista
 productoria [] = 1
 productoria (x:xs) = x * productoria xs
 
-maximo :: [Int] -> Int --No lista vacia
+maximo :: [Int] -> Int --No lista vacia, va corriendo y dejando primero al mayor
 maximo [x] = x
-maximo (x:xs) | x > maximo xs = x
-              | otherwise = maximo xs
+maximo (x:y:xs) | x < y = maximo (y:xs)
+                |otherwise = maximo(x:xs)
+
+sumarN :: Int -> [Int] -> [Int] 
+sumarN n [] = []
+sumarN n (x:xs) = (x+n) : sumarN n xs
 
 
 ----------------------------------------------------
