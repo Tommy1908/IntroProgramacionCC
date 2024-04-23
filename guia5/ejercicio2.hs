@@ -3,6 +3,12 @@ longitud :: [t] -> Int
 longitud [] = 0
 longitud a = 1 + longitud(tail a)
 
+reverso :: [t] -> [t]
+reverso [] = []
+reverso (x:xs)| longitud(x:xs) == 1 = x:[]
+              | otherwise = (reverso xs) ++ (x:[])
+-------------------------
+
 
 pertenece :: (Eq t) => t -> [t] -> Bool
 pertenece _ [] = False
@@ -41,3 +47,13 @@ eliminarRepetidos :: (Eq t) => [t] -> [t]
 eliminarRepetidos [] = []
 eliminarRepetidos (x:xs) | pertenece x xs = x : eliminarRepetidos(quitarTodos x xs)
                          | otherwise = x: eliminarRepetidos xs
+
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+mismosElementos [] [] = True --Digo yo
+mismosElementos [] _ = False
+mismosElementos (x:xs) l | longitud (x:xs) == 1 = pertenece x l
+                         | pertenece x l = True && mismosElementos xs l
+                         | otherwise = False 
+
+capicua :: (Eq t) => [t] -> Bool
+capicua l = l == reverso l
