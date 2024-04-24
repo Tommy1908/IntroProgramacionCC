@@ -55,3 +55,25 @@ palabrasAux :: [Char] -> [Char] -> [[Char]]
 palabrasAux [] palabra = [palabra]
 palabrasAux (x:xs) palabra | x /= ' ' = palabrasAux xs (palabra ++ [x])
                            | otherwise = [palabra] ++ (palabrasAux xs [])
+
+{-Ayudado para este codigo. palabras limpia la lista y manda a una funcion aux la lista que queremos separar y una lista vacia.
+Por lo general, vamos a querer meter nuestras letras a una lista. Eso lo hacemos con palabra ++ [x], donde metemos nuestra letra en una lista para poder concatenar con...
+una lista en principio vacia, y pasamos devuelta donde metimos nuestra letra. Cuando se llega a un espacio metemos a nuestra lista en otra lista en [palabra] y vamos a concatenar..
+eso con empezar devuelta con una lista vacia.
+Al final, cuando mi lista principal se vacia, metemos lo que teniamos ya guardado en una lista.-}
+
+--d)
+
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga [] = []
+palabraMasLarga l = palabraMasLargaAux (palabras(limpiarLista l))
+
+cantidadCaracteres :: [Char] -> Int
+cantidadCaracteres [] = 0
+cantidadCaracteres (x:xs) = 1 + cantidadCaracteres xs
+
+palabraMasLargaAux :: [[Char]] -> [Char]
+palabraMasLargaAux [x] = x
+palabraMasLargaAux (x:y:xs) | (cantidadCaracteres x) > (cantidadCaracteres y) = palabraMasLargaAux([x] ++ xs)
+                            | otherwise = palabraMasLargaAux([y] ++ xs)
+
