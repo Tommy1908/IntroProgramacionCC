@@ -4,6 +4,7 @@ holaMundo = ['h','o','l','a',' ',' ','m','u','n','d','o'] :: [Char]
 l1 = [' ',' ','h','o','l','a','!',' ',' ',' '] :: [Char]
 l2 = [' ','L','I','S','t','a','d','o']
 l3 = [' ','L','I','S','t','a','d','o',' ',' ','h','o','l','a','!',' ',' ',' ','h','o','l','a',' ',' ','m','u','n','d','o']
+ll4= [['h','o','l','a'],['m','u','n','d','o'],['l','i','s','t','a','s']]
 
 
 --a)
@@ -77,3 +78,28 @@ palabraMasLargaAux [x] = x
 palabraMasLargaAux (x:y:xs) | (cantidadCaracteres x) > (cantidadCaracteres y) = palabraMasLargaAux([x] ++ xs)
                             | otherwise = palabraMasLargaAux([y] ++ xs)
 
+--e)que a partir de una lista de palabras arma una lista de caracteres concatenandolas. (Sin Espacios) //No aplique nada para limpiar la lista
+
+aplanar :: [[Char]] -> [Char]
+aplanar [] = []
+aplanar (x:xs) = x ++ (aplanar xs)
+
+--f)que a partir de una lista de palabras, arma una lista de caracteres concatenandolas e insertando un blanco entre cada palabra //No aplique nada para limpiar la lista
+
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos (x:xs) = x ++ [' '] ++ (aplanarConBlancos xs)
+
+--g)que a partir de una lista de palabras y un entero n, arma una lista de caracteres concatenandolas e insertando n blancos entre cada palabra (n debe ser no negativo)
+
+aplanarConNBlancos :: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos [x] _ = x
+aplanarConNBlancos (x:xs) n = x ++ (nEspacios n) ++ (aplanarConNBlancos xs n)
+
+nEspacios :: Integer -> [Char]
+nEspacios 0 = []
+nEspacios n | n == 1 = [' ']
+            | otherwise = [' '] ++ nEspacios (n-1)
+
+
+---- ¿Como cambian los ejercicios si agregamos el renombre de tipos: type Texto = [Char]? ----
