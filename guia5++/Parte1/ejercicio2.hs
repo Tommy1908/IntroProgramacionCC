@@ -1,7 +1,7 @@
 --Ejercicio 2. Reimplementar la funcion del ejercicio 6 de la guia 3 usando:
 
 {-
-bisiesto :: Año ->EsBisiesto
+bisiesto :: Año -> EsBisiesto
 problema bisiesto (año: Z) : Bool {
 requiere: {True}
 asegura: {res = false ↔ año no es multiplo de 4 o año es multiplo de 100 pero no de 400}
