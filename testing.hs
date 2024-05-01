@@ -1,30 +1,38 @@
---ghci abre haskell
--- :q para salir
--- :l 'name' para cargar
--- :r recargar codigo
+longitud :: [t] -> Int
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
 
-doubleMe :: Int -> Int --Asignatura
-doubleMe n = n + n     --name variables = funcion
+reverso :: [t] -> [t]
+reverso [] = []
+reverso (x:xs)| longitud(x:xs) == 1 = x:[]
+              | otherwise = (reverso xs) ++ (x:[])
 
--- '|' es una guarda, y devuelve un valor booleano
--- para numeros negativos en terminal al menos, usar ()
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [y] = y:[]
+sacarBlancosRepetidos (x:y:xs) | x == ' ' && y == ' ' = sacarBlancosRepetidos (' ':xs) --Sacar un ' '
+                               | otherwise = x: sacarBlancosRepetidos (y:xs)
 
-signo :: Int -> Int
-signo x | x > 0 = 1
-        | x < 0 = -1
-        | otherwise = 0
+sacarPrimerBlancos :: [Char] -> [Char]
+sacarPrimerBlancos [] = []
+sacarPrimerBlancos (x:xs) | x == ' ' = sacarPrimerBlancos xs
+                          | otherwise = (x:xs)
 
-signo2 :: Int -> Int
-signo2 0 = 0        -- aca esta aplicado pattern Matching
-signo2 x | x > 0 = 1
-         | x < 0 = -1
+limpiarLista :: [Char] -> [Char] --Saca espacios innecesarios
+limpiarLista [] = []
+limpiarLista l = reverso(sacarPrimerBlancos(reverso(sacarPrimerBlancos(sacarBlancosRepetidos l))))
 
-funcion :: Int -> Int
-funcion 0 = 0
-funcion 5 = 10
-funcion (-4) = -7
-funcion n = 10000
+l1 = ['h','o',' ','p',' ','c',' ']
 
 
---div x y   da resultado de div entera
---mod x y   da resto de div enteraS
+
+palabras::[Char] -> [[Char]]
+palabras [] = []
+palabras l = palabrasAux(limpiarLista l) []
+
+--              Lista    Vacio
+palabrasAux :: [Char] -> [Char] -> [[Char]]
+palabrasAux [] palabra = [palabra]
+palabrasAux (x:xs) lista | x /= ' ' = palabrasAux xs (lista ++ [x])
+                         | otherwise = [lista] ++ (palabrasAux xs [])
+
