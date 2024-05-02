@@ -1,3 +1,5 @@
+--La introduccion de este parcial son las mismas del parcial nro1, y el puntaje estimo que sera el mismo.
+
 -----------------------------------------------
 
 --Ej 2 y empiezo por el 2 porque es mejor entender formulasValidas Primero pasa saber que van a recibir las otras
