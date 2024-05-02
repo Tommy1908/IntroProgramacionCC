@@ -22,8 +22,8 @@ limpiarLista :: [Char] -> [Char] --Saca espacios innecesarios
 limpiarLista [] = []
 limpiarLista l = reverso(sacarPrimerBlancos(reverso(sacarPrimerBlancos(sacarBlancosRepetidos l))))
 
-l1 = ['h','o',' ','p',' ','c',' ']
 
+l1 = ['h','o',' ','p','o',' ','c']
 
 
 palabras::[Char] -> [[Char]]
@@ -33,6 +33,5 @@ palabras l = palabrasAux(limpiarLista l) []
 --              Lista    Vacio
 palabrasAux :: [Char] -> [Char] -> [[Char]]
 palabrasAux [] palabra = [palabra]
-palabrasAux (x:xs) lista | x /= ' ' = palabrasAux xs (lista ++ [x])
-                         | otherwise = [lista] ++ (palabrasAux xs [])
-
+palabrasAux (x:xs) palabra | x /= ' ' = palabrasAux xs (palabra ++ [x])
+                           | otherwise = [palabra] ++ (palabrasAux xs [])
