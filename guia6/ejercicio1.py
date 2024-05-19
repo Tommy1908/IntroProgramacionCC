@@ -1,5 +1,7 @@
-#python3
-#exit() para salir o Ctrl + D
+#python3                        - EN LA FACU
+#exit() para salir o Ctrl + D   - EN LA FACU
+#python
+#exit() o Ctrl + z
 
 from math import *
 
