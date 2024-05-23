@@ -84,3 +84,63 @@ def reverso(palabra:str) -> str:
 
     return res
 
+#7) 
+hasLower:bool = False
+hasUpper:bool = False
+hasNumber:bool = False
+
+def password(password:str) -> str:
+    res:str = "AMARILLA"
+    checkContent(password)
+    if len(password) < 5:
+        res = "ROJA"
+    elif len(password) > 8 and hasLower and hasUpper and hasNumber:
+        res = "VERDE"
+    return res
+
+def checkContent(password:str) -> None:
+    global hasLower
+    global hasUpper
+    global hasNumber
+    for i in range(len(password)):
+        if 97 <= ord(password[i]) <= 122:
+            hasLower = True
+        elif 65 <= ord(password[i]) <= 90:
+            hasUpper = True
+        elif 48 <= ord(password[i]) <= 57:
+            hasNumber = True
+
+#8)
+#Dada una lista de tuplas, que representa un historial de movimientos en una cuenta bancaria, devolver el saldo actual.
+#Asumir que el saldo inicial es 0. Las tuplas tienen una letra que nos indica el tipo de movimiento “I” para ingreso de
+#dinero y “R” para retiro de dinero, y ademas el monto de cada operacion. Por ejemplo, si la lista de tuplas es [(‘‘I’’, 2000), (‘‘R’’, 20),(‘‘R’’, 1000),(‘‘I’’, 300)]
+#entonces el saldo actual es 1280.
+
+#def banco(mov:list[tuple:(chr,int)]) -> int:
+#ni idea como usar una tupla
+
+
+#9)
+#Voy a usar append y count que estan en las slides teoricas
+def tres_vocales_diferentes(p:str) -> bool:
+    res:bool = False
+    vocales_encontradas:list = []
+    vocales = ['a','e','i','o','u']
+    #Recorro la palabra en busca de vocales
+    for i in range(len(p)):
+        if (p.count(p[i]) != 0) and (p[i] in vocales):
+            vocales_encontradas.append(p[i]) #Lista de vocales encontradas
+
+    quitar_repetidos(vocales_encontradas)
+
+    if len(vocales_encontradas) >= 3:
+        res = True
+
+    return res
+
+def quitar_repetidos(l:list) -> list:
+    res:list = []
+    for i in range(len(l)):
+        if res.count(l[i]) == 0:
+            res.append(l[i])
+    return res
