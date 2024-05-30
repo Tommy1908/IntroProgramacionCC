@@ -1,12 +1,7 @@
-#Esto es un comentario
-    #Esto es otro comentario
 Esto no es un comentario
 
     Esta y la de arriba "vacia" tampoco
-            #Este si es un comentario
 Por eso esta va pegada
                 .
         linea!
-        #no linea
-            #no linea
             linea

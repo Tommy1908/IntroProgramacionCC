@@ -1,8 +1,8 @@
-Este es el ejercicio numero 3
 
-jamon
-jamoncito
-son 14
+primero
+segundo
+tercero
 
-tengo hambre
-aaaa
+cuarto
+quinto
+
