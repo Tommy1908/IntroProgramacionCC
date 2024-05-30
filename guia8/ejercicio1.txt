@@ -1,5 +1,11 @@
 Este es el primer ejercicio
 Hay que abrir y leer archivos
 Ese es el principal objetivo
+
 Esta es la cuarta linea
 Bueno vamos a cortar por aca esta linea
+
+a
+
+
+
