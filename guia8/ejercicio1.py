@@ -106,8 +106,67 @@ def invertir(ruta:str) -> None:
     for i in range(len(lineas)-1,-1,-1):
         res.write(lineas[i])
 
-invertir("ejercicio3.txt")
-
 ################################################################
 
 ######################### Ejercicio 4 ##########################
+
+def agregar_frase_final(ruta: str, frase: str) -> None:
+    archivo:typing.IO = open(ruta,'a')
+    archivo.write("\n" + frase)
+    archivo.close()
+#Con esta implementacion siempre queda un salto de linea en la primera, poniendolo despues quedaria al final. Creo que si lo abriera en modo lectura y escritura}
+#Podria evitarlo verificando si esta vacio, no haga este salto de linea. Pero asi queda mas simple y usamos 'a'
+agregar_frase_final("ejercicio4.txt","linea al final")
+
+################################################################
+
+######################### Ejercicio 5 ##########################
+
+def agregar_frase_al_principio(ruta: str, frase: str) -> None:
+    archivo: typing.IO = open(ruta, 'r')
+    lineas: list[str] = archivo.readlines()
+    archivo.close()
+
+    lineas = [frase + '\n'] + lineas
+
+    archivo = open(ruta, 'w')
+
+    for i in range(len(lineas)):
+        archivo.write(lineas[i])
+
+agregar_frase_al_principio("ejercicio5.txt","va a primera linea")
+
+################################################################
+
+######################### Ejercicio 6 ##########################
+#Devolver elementos que:
+    #secuencias de texto formadas por numeros, letras mayusculas/minusculas y los caracteres ‘ ’(espacio) y ‘ ’(guion bajo)
+    #que tienen longitud >= 5
+ #  chr(byte)
+def listar_palabras_de_archivo(ruta: str) -> list[str]:
+    archivo = open(ruta,'rb')
+    contenido = archivo.read()
+    
+    res: list[str] = []
+    palabra:str = ""
+
+    for i in range(len(contenido)):
+        byte = chr(contenido[i]) #Ya traducido
+        #print(chr(contenido[i]))
+        if (48 <= ord(byte) <= 57) or  (65 <= ord(byte) <= 90) or (97 <= ord(byte) <= 122) or (byte == " ") or (byte == "_"):
+            palabra += byte
+        else:
+            if len(palabra) >= 5:
+                res += [palabra]
+                palabra = ""
+            else:
+                palabra = ""
+    #Pasamos esta condicion una ves mas por si quedo una palabra al final del for
+    if len(palabra) >= 5:
+        res += [palabra]
+        palabra = ""
+    else:
+        palabra = ""
+    return res
+
+print(listar_palabras_de_archivo("ejercicio6.mp3"))
