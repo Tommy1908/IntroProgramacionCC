@@ -1,3 +1,8 @@
+def rel(): exec(f"import {__name__};import importlib;importlib.reload({__name__})")
+r = f"rel(); from {__name__} import *"
+print("OK. Reload with exec(r)")
+
+
 #Ejercicio 4
 
 #1)
@@ -82,3 +87,11 @@ def filas_ordenadas(m:list[list[int]],res:list[bool]):
     for i in range(len(m)):
         res.append(ordenados(m[i]))
 
+#5)
+import numpy as np
+
+def funcion(d:int,p:int) -> list[list[int]]:
+    m = np.random.randint(0,10, (d, d))
+
+    result = np.linalg.matrix_power(m, p)
+    print(result)
