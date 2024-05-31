@@ -169,4 +169,7 @@ def listar_palabras_de_archivo(ruta: str) -> list[str]:
         palabra = ""
     return res
 
-print(listar_palabras_de_archivo("ejercicio6.mp3"))
+################################################################
+
+######################### Ejercicio 7 ##########################
+#Ni la menor idea de q hacer por ahora
