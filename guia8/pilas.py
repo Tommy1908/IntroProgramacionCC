@@ -1,16 +1,11 @@
 ########################### Pilas ##############################
 from queue import LifoQueue as Pila
 import random
-
-p = Pila ()
-p . put (1) # apilar
-elemento = p . get () # desapilar
-p . empty () # vacia ?
-
 ##################### Funciones Utiles ######################### 
 
 def desapilar(p: Pila[int]) -> None: #Imprime la pila y su longitud al final
     long: int = 0
+    print("Desapilando:")
     while not(Pila.empty(p)):
         print(p.get())
         long += 1
@@ -55,11 +50,47 @@ def cantidad_elementos(p: Pila[int]) -> int: #Este tiene que dejar a p como esta
     duplicado: Pila[int] = duplicar_Pila(p)
     long:int = 0
     while not(Pila.empty(duplicado)): #Aca desarmamos el duplicado
-        print(duplicado.get())
         long += 1
     return long
 
 ################################################################
 
 ######################### Ejercicio 10 #########################
+
+def buscar_el_maximo(p: Pila[int]) -> int:
+    duplicado: Pila = duplicar_Pila(p)
+    maximo:list[str] = duplicado.get() #No entiendo porque
+    maximo = int(maximo[0]) #lo paso a numero
+    while not(Pila.empty(duplicado)):
+        evaluado: int = int((duplicado.get())[0])
+        if maximo < evaluado:
+            maximo = evaluado 
+        #Maximo esta en clase lista
+    return maximo
+
+################################################################
+
+######################### Ejercicio 11 #########################
+
+def esta_bien_balanceada(s:str) -> bool: #Necesito usar pilas realmente?? | No aclara que hacer si se pone una letra por ejemplo, asi que saltee esa parte, funciona igual
+    p = Pila()
+    for i in range(len(s)-1,-1,-1): #La doy vuelta asi cuando la apile me queda como si fuera de izquerda a derecha (podria ser igual pero hay que cambiar la logica de los if's)
+        if s[i] == "(" or s[i] == ")":
+            p.put(s[i])
+    #Ahora p tiene tiene todos los parentersis
+    #Por cada abierto tengo que encontrar uno que lo cierre, y es importante que siempre haya primero uno habierto para cerrarlo
+    abiertos:int = 0
+    cerrados:int = 0
+    balanceado:bool = True
+    while not(Pila.empty(p)) and balanceado:
+        elemento:str = p.get()
+        if elemento == '(':
+            abiertos += 1
+        else:
+            cerrados += 1
+        if cerrados > abiertos:
+            balanceado = False
+    if abiertos != cerrados:
+        balanceado = False
+    return balanceado
 
