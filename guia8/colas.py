@@ -64,8 +64,23 @@ def buscar_el_maximo(c:Cola[int]) -> int:
         c.put(cola_data[i])
     return maximo
 
+################################################################
 
-c = generar_nros_al_azar(5,0,20)
-print(buscar_el_maximo(c))
+######################## Ejercicio 16 ##########################
+#Entiendo que los numeros no se pueden repetir
+def armar_secuencia_de_bingo() -> Cola[int]:
+    #Primero voy a armar una lista asi es mas comodo verificar que no haya repetidos
+    numeros_para_bingo: list[int] = []
+    while not(len(numeros_para_bingo) == 12):
+        n:int = random.randint(0,99) #Esos son los posibles valores del bingo
+        if n not in numeros_para_bingo: #Aca uso in en vez de un pertenece porque no lo tengo aca
+            numeros_para_bingo.append(n)
+    #Ahora ya tenemos todos los valores para el bingo, los metemos a una cola
+    c = Cola()
+    for i in range(0,12):
+        c.put(numeros_para_bingo[i])
+    print(numeros_para_bingo)
+    return c
+
+c = armar_secuencia_de_bingo()
 descolar(c)
-
