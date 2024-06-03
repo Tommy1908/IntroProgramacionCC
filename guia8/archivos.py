@@ -116,7 +116,6 @@ def agregar_frase_final(ruta: str, frase: str) -> None:
     archivo.close()
 #Con esta implementacion siempre queda un salto de linea en la primera, poniendolo despues quedaria al final. Creo que si lo abriera en modo lectura y escritura}
 #Podria evitarlo verificando si esta vacio, no haga este salto de linea. Pero asi queda mas simple y usamos 'a'
-agregar_frase_final("ejercicio4.txt","linea al final")
 
 ################################################################
 
@@ -133,8 +132,6 @@ def agregar_frase_al_principio(ruta: str, frase: str) -> None:
 
     for i in range(len(lineas)):
         archivo.write(lineas[i])
-
-agregar_frase_al_principio("ejercicio5.txt","va a primera linea")
 
 ################################################################
 
@@ -172,4 +169,58 @@ def listar_palabras_de_archivo(ruta: str) -> list[str]:
 ################################################################
 
 ######################### Ejercicio 7 ##########################
-#Ni la menor idea de q hacer por ahora
+
+def promedio_estudiante(ruta:str,lu:str) -> float:
+    archivo: typing.IO = open(ruta)
+    contenido: list[str] = archivo.readlines()
+    #Saco todos los valores que no sean de ese lu de contenido
+    contenido_en_lista: list[list[str]] = []
+    for i in range(len(contenido)):
+        temp:str = ""
+        dato: list[str] = []
+        for k in range(len(contenido[i])):
+            if contenido[i][k] != ',' and k != len(contenido[i])-1:
+                temp += contenido[i][k]
+            else:
+                dato += [temp]
+                temp = ""
+        contenido_en_lista += [dato]
+
+    #Ahora busco para ese LU las notas
+    promedio:float = 0
+    cantidad:int = 0
+    for i in range(len(contenido_en_lista)):
+        if contenido_en_lista[i][0] == lu:
+            promedio += int(contenido_en_lista[i][3] )
+            cantidad += 1
+    promedio /= cantidad
+    return promedio
+
+def calcular_promedio_por_estudiante(ruta:str,promedios:str) -> None:
+    archivo_res: typing.IO = open(promedios, 'a')
+    
+    #Ahora voy a repetir el codigo de arriba para ver cuantos lu's tengo, seria mejor hacerlo solo una y no repetir codigo
+    archivo: typing.IO = open(ruta)
+    contenido: list[str] = archivo.readlines()
+    #Saco todos los valores que no sean de ese lu de contenido
+    contenido_en_lista: list[list[str]] = []
+    for i in range(len(contenido)):
+        temp:str = ""
+        dato: list[str] = []
+        for k in range(len(contenido[i])):
+            if contenido[i][k] != ',' and k != len(contenido[i])-1:
+                temp += contenido[i][k]
+            else:
+                dato += [temp]
+                temp = ""
+        contenido_en_lista += [dato]
+    #Hago una lista con los lu's
+    lues:list[str] = []
+    for i in range(len(contenido_en_lista)):
+        if contenido_en_lista[i][0] not in lues:
+            lues += [contenido_en_lista[i][0]]
+
+    #Ahora por cada lu pasamos a la funcion anterior y lo escribimos
+    for i in range(len(lues)):
+        promedio:int = promedio_estudiante(ruta,lues[i])
+        archivo_res.write(f"{lues[i]},{promedio}\n")
