@@ -68,21 +68,51 @@ def buscar_el_maximo(c:Cola[int]) -> int:
 
 ######################## Ejercicio 16 ##########################
 #Entiendo que los numeros no se pueden repetir
-def armar_secuencia_de_bingo() -> Cola[int]:
+#me di cuenta de que pedia armar la cola del bolilero no del carton de bingo, pero bueno
+#Duplico la funcion anterior y le cambio el valor para ser el bolilero
+def armar_bolillero() -> Cola[int]:
+    #Primero voy a armar una lista asi es mas comodo verificar que no haya repetidos
+    numeros_para_bingo: list[int] = []
+    while not(len(numeros_para_bingo) == 100):
+        n:int = random.randint(0,99) #Esos son los posibles valores del bingo
+        if n not in numeros_para_bingo: #Aca uso in en vez de un pertenece porque no lo tengo aca
+            numeros_para_bingo.append(n)
+    #Ahora ya tenemos todos los valores para el bingo, los metemos a una cola
+    c = Cola()
+    for i in range(0,100):
+        c.put(numeros_para_bingo[i])
+    print(f"Bolillero{numeros_para_bingo}")
+    return c
+
+def armar_secuencia_de_bingo() -> list[int]:
     #Primero voy a armar una lista asi es mas comodo verificar que no haya repetidos
     numeros_para_bingo: list[int] = []
     while not(len(numeros_para_bingo) == 12):
         n:int = random.randint(0,99) #Esos son los posibles valores del bingo
         if n not in numeros_para_bingo: #Aca uso in en vez de un pertenece porque no lo tengo aca
             numeros_para_bingo.append(n)
-    #Ahora ya tenemos todos los valores para el bingo, los metemos a una cola
-    c = Cola()
-    for i in range(0,12):
-        c.put(numeros_para_bingo[i])
-    print(numeros_para_bingo)
-    return c
+    print(f"CARTON = {numeros_para_bingo}")
+    return numeros_para_bingo
 
-#def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
+def pertenece_y_pos(x:int,l:list[int]) -> int: #Considerando que x ya pertenece a la lista, te devuelve la posicion de la lista (para este caso solo aparece una vez cada numero)
+    res:int = -1
+    for i in range(len(l)):
+        if x == l[i]:
+            res = i
+    #Cuando ya lo encontro sigue igual, podria hacerlo con un while para ser mas efectivo
+    return res
+
+def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
+    res:int = 0
+    while len(carton) != 0:
+        bolita:int = bolillero.get()
+        print(bolita)
+        if bolita in carton:
+            carton.pop(pertenece_y_pos(bolita,carton))
+            print(f"CARTON = {carton}")
+        res += 1
+        print(f"res:{res}")
+    return res
 
 ################################################################
 
