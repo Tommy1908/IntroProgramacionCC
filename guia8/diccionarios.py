@@ -1,8 +1,21 @@
 ######################## Diccionarios ##########################
 from queue import LifoQueue as Pila
-import random
 import typing
 ##################### Funciones Utiles ######################### 
+#Funcion que parte todo un texto en palabras, a partir del 21 pero serviria para el 19
+def partir(texto:str,corte:list[str]) -> list[str]: #Toma el texto y en donde hay que cortar
+    palabras: list[str] = []
+    palabra: str = ""
+    for i in range(len(texto)):
+        if texto[i] not in corte and texto[i] != '':
+            palabra += texto[i]
+        elif palabra != '':
+            palabras += [palabra]
+            palabra = ""
+    if palabra not in corte and palabra != '':
+        palabras += [palabra]
+        palabra = ""
+    return  palabras
 
 ################################################################
 
@@ -84,4 +97,104 @@ def calcular_promedio_por_estudiante(ruta:str) -> dict[str,float]:
         d[lues[i]] = promedios[i]
     return d
 
-print(calcular_promedio_por_estudiante("ejercicio20.csv"))
+################################################################
+
+######################## Ejercicio 21 ##########################
+#Honestamente nose porque pude que lo haga con un diccionario, creo que me complico mas la vida, pero bueno
+def la_palabra_mas_frecuente(ruta: str) -> str:
+    #Primero hago un diccionario que contenga todas las palabras y sus cantidades, similar al primero y devuelvo el mayor (sino para que hago)
+    archivo: typing.IO = open("ejercicio21.txt")
+    contenido:str = archivo.read()
+    contenido = (contenido.lower())
+
+    #Voy a hacer una funcion slice mas general (va a estar arriba de todo)
+    palabras: list[str] = partir(contenido,[',',' ','\n','(',')'])
+
+    #Ahora los meto en un diccionario clasificados por su cantidad, pero aca la clave va a ser la palabra y su valor la cantidad de apariciones
+    d: dict[str,int] = {}
+    for i in range(len(palabras)):
+        if palabras[i] in d:
+            d[palabras[i]] += 1
+        else:
+            d[palabras[i]] = 1
+
+    #Ahora devuelvo la palabra con mas apariciones
+    key:str = ""
+    value:int = 0
+
+    for k,v in d.items():
+        #print(f"key -> {k}, value -> {v}")
+        #print(f"{k}: {v}")
+        if value < v:
+            value = v
+            key = k
+
+    #print(f"\nLa palabra con mas apariciones es {key}: {value}")
+
+    return key
+
+################################################################
+
+######################## Ejercicio 22 ##########################
+#Bueno estaba media rara la espeficicacion pero entiendo que cuando vas para atras, te suma al historial el anterior
+#Si era youtube -> facebook -> google -> campus y pongo ir atras es youtube -> facebook -> google -> campus -> google y si lo pongo devuelta es campus
+#Voy a hacerlo en base a eso
+
+#Voy a hacer una funcion que me permita ver la pila y devolverla como estaba
+def desapilar(p:Pila[str]) -> Pila[str]:
+    data: list[str] = []
+    while not Pila.empty(p):
+        data.append(p.get())
+    print(data)
+    for i in range(len(data)-1,-1,-1):
+        p.put(data[i])
+    return p
+
+historial: dict[str, Pila[str]] = {}
+
+def visitar_sitio(historial:dict[str, Pila[str]], usuario:str, sitio:str) -> None:
+    #Primero veo si ya existe un historial de ese usuario, sino lo creo
+    if usuario not in historial:
+        p = Pila()
+        p.put(sitio)
+        historial[usuario] = p
+        #p = desapilar(p)
+    else:
+        for k,v in historial.items():
+            if k == usuario:
+                v.put(sitio) #Este v es la pila (historial)
+                #v = desapilar(v)
+
+#Asumo que hay algun elemento anterior en la pila ya que no aclara que hacer en ese caso
+def navegar_atras(historial:dict[str, Pila[str]], usuario:str) -> None:
+    actual:str = ""
+    anterior:str = ""
+    #Busco en el historial
+    p = historial[usuario]
+    actual = p.get()
+    anterior = p.get()
+    #Devuelvo el historial
+    p.put(anterior)
+    p.put(actual)
+    #Agrego el anterior
+    visitar_sitio(historial,usuario,anterior)
+
+#Prueba:
+#visitar_sitio(historial,"Tommy","google.com")
+#visitar_sitio(historial,"Tommy","youtube.com")
+#visitar_sitio(historial,"User2","google.com")
+#visitar_sitio(historial,"User2","instagram.com")
+#visitar_sitio(historial,"Admin","gitHub.com")
+#visitar_sitio(historial,"Admin","youtube.com")
+#navegar_atras(historial,"Admin")
+#visitar_sitio(historial,"Tommy","discord.com")
+#visitar_sitio(historial,"User2","google.com")
+#navegar_atras(historial,"Tommy")
+#navegar_atras(historial,"Tommy")
+#navegar_atras(historial,"Tommy")
+#visitar_sitio(historial,"User2","google.com")
+#navegar_atras(historial,"User2")
+#
+#for k,v in historial.items():
+#    print(f"Historial de {k}: ")
+#    desapilar(v)
