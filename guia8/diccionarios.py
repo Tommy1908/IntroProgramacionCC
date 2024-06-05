@@ -198,3 +198,53 @@ def navegar_atras(historial:dict[str, Pila[str]], usuario:str) -> None:
 #for k,v in historial.items():
 #    print(f"Historial de {k}: ")
 #    desapilar(v)
+
+################################################################
+
+######################## Ejercicio 23 ##########################
+
+inventario: dict[str,dict[str,int]] = {}
+
+#Dice que el elemento a agregar no esta en inventario
+def agregar_producto(inventario:dict[str,dict[str,int]],nombre:str,precio:int,cantidad:int) -> None:
+    data: dict[str,int] = {}
+    data["precio"] = precio
+    data["cantidad"] = cantidad
+    inventario[nombre] = data
+
+
+#Aca no aclara pero entocnes asumo que ese elemento existe ya en el dicc
+def actualizar_stock(inventario:dict[str,dict[str,int]],nombre:str,cantidad:int) -> None:
+    data: dict[str,int] = inventario[nombre]
+    data["cantidad"] = cantidad
+    inventario[nombre] = data
+
+#Lo mismo que antes, asumo que el producto ya esta en el inventario
+def actualizar_precios(inventario:dict[str,dict[str,int]],nombre:str,precio:int) -> None:
+    data: dict[str,int] = inventario[nombre]
+    data["precio"] = precio
+    inventario[nombre] = data
+
+def calcular_valor_inventario(inventario:dict[str,dict[str,int]]) -> float:
+    valor:float = 0.0
+    for k,v in inventario.items():
+        data: dict[str,int] = inventario[k]
+        valor += (data["precio"] * data["cantidad"])
+
+    return valor
+
+#Ejemplo
+#agregar_producto(inventario,"Jeans",5600,7)
+#agregar_producto(inventario,"Camisa",4900,19)
+#agregar_producto(inventario,"Saco",6000,4)
+#print(inventario)
+#print(calcular_valor_inventario(inventario))
+#actualizar_precios(inventario,"Camisa",5000)
+#actualizar_stock(inventario,"Jeans",4)
+#actualizar_stock(inventario,"Saco",12)
+#actualizar_precios(inventario,"Saco",5800)
+#print(inventario)
+#print(calcular_valor_inventario(inventario))
+
+
+################################################################
