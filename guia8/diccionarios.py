@@ -202,7 +202,7 @@ def navegar_atras(historial:dict[str, Pila[str]], usuario:str) -> None:
 ################################################################
 
 ######################## Ejercicio 23 ##########################
-
+#Creo que puse mal el tipo y era float y no string el precio, funciona igual
 inventario: dict[str,dict[str,int]] = {}
 
 #Dice que el elemento a agregar no esta en inventario
