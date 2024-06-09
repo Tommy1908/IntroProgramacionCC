@@ -48,7 +48,7 @@ def agrupar_por_longitud(ruta:str) -> dict:
         else:
             d[len(palabras[i])] += 1
 
-    print(d.items())
+    return d
 
 ################################################################
 
