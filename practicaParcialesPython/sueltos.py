@@ -75,7 +75,6 @@ def es_capicua(l:list[int]) -> bool:
         if l[i] != l[k]:
             res = False 
         k -= 1
-
     return res
 
 print(matriz_capicua([[8,5,3,5,8],[],[1,2,2,1],[3,6,3],[8],[0,6]]))
