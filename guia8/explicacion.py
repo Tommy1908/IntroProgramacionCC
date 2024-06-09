@@ -1,44 +1,36 @@
-# archivo -> seq<char>
+d:dict[str,str] = {"tiago":"ininputable","matias":"matas","agus":"sanin","mirko":"gordo compu","nacho":"jesus"}
+dvacio: dict[int,list[tuple[int,int]]] = {}
 
-#archivo = open(nombre)
-#archivo.close()
-
-# '\n' es un solo caracter
-
-
-#archivo = open("explicacion.txt")
-#contenido = archivo.read()
-#print(contenido)
-#archivo.close
+print(d.keys())
+print(d.values())
+print(d.items())
+#d.pop("mirko")
+#d.clear()
 
 
-def separar_palabras(contenido:str,caracteresDistintos:list[str]) -> list[list[str]]:
-    resultado: list[list[str]] = []
-    expresion :list[str] = []
-    palabra = "" 
-    for i in range(len(contenido)):
-        if len(expresion) < 4:
-            caracterActual = contenido[i]
-            if caracterActual in caracteresDistintos:
-                expresion.append(palabra)
-                palabra = ""
-            else:
-                palabra += caracterActual
-        else:
-            caracterActual = contenido[i]
-            resultado.append(expresion)
-            expresion = []
-            caracterActual = contenido[i]
-            if caracterActual in caracteresDistintos:
-                expresion.append(palabra)
-                palabra = ""
-            else:
-                palabra += caracterActual
-                
-    if palabra != "":
-        expresion.append(palabra)
-    if expresion != []:
-        resultado.append(expresion)
-    return resultado
+d["cesar"] = "cheddar"
+d["mirko"] = "gordo Haskell"
 
-print(separar_palabras("aa,bb,cc,dd,TO,ff,gg,hh",[","]))
+#print(d)
+
+for k,v in d.items():
+    print(f"key: {k}, value: {v}")
+
+print("tiago" in d)
+print("ininputable" in d)
+print("tommy" in d)
+
+print(d)
+#
+#palabras:list[str] = ["hola","mundo","palabra","agua","mateo","aaaaa","grgrgrgrgr"]
+#
+#print(palabras)
+##Ahora los voy a clasificar y meter a un diccionario
+#d: dict[int, int] = {}
+#for i in range(len(palabras)):
+#    if len(palabras[i]) not in d:
+#        d[len(palabras[i])] = 1
+#    else:
+#        d[len(palabras[i])] += 1
+#
+#print(d)
