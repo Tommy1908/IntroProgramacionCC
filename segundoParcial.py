@@ -189,5 +189,3 @@ def quien_gano_el_tateti_facilito(tablero: list[list[str]]) -> int:
 #     ["X"," "," "," "," "," "," ","O"]
 # ]
 # print(quien_gano_el_tateti_facilito(tablero1))
-
-#
