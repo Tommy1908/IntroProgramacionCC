@@ -1,5 +1,20 @@
 #Nota: 10.0 / 10.0 (APROBADO) 
-#(habia 3 preguntas teoricas pero no las pusieron en el mail de respuesta)
+#Preguntas teoricas:
+#A) ¿Qué es una variable en Python? (0.75 punto)
+# Una función que devuelve valores aleatorios.
+# [X] Un contenedor para almacenar datos que puede cambiar durante la ejecución del programa.
+# Un tipo de dato que solo puede contener números enteros.
+
+#B) ¿Cuál es la función de un ciclo en Python? (0.75 punto)
+# Ejecutar un conjunto de instrucciones una sola vez.
+# [X] Ejecutar repetidamente un conjunto de instrucciones hasta que una condición se evalúe como falsa.
+# Definir una constante que no puede ser cambiada.
+     
+#C) ¿Cuál es la finalidad de un Control Flow Graph en testing? (0.5 punto)
+# Identificar todas las posibles salidas de un programa.
+# [X] Visualizar todos los posibles caminos de ejecución para asegurar la cobertura completa del código.
+# Determinar los puntos de entrada y salida del programa.
+
 from queue import Queue as Cola
 
 # Ejercicio 1
