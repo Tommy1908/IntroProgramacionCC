@@ -77,4 +77,37 @@ def es_capicua(l:list[int]) -> bool:
         k -= 1
     return res
 
-print(matriz_capicua([[8,5,3,5,8],[],[1,2,2,1],[3,6,3],[8],[0,6]]))
+
+#Matriz de responsables por turnos
+
+                                        #truefalse                              falsefalse                              truetrue                    falsetrue
+grilla_horaria:list[list[str]] = [["m","m","m","m","m","p","p","p"],["m","k","k","m","m","p","p","p"],["m","m","m","m","p","p","p","p"],["m","m","m","l","p","p","p","p"],
+                                  ["m","m","l","m","n","p","p","p"],["m","m","l","m","n","p","p","p"],["m","m","l","m","n","p","p","p"]]
+
+def ejmalisimo(grilla_horaria:list[list[str]]) -> list[tuple[bool,bool]]:
+    res:list[tuple[bool,bool]] = []
+
+    for i in range(len(grilla_horaria)):
+        igualesManana:bool = True
+        persona:str = ""
+
+        for k in range(0,4,1):
+            if persona == "":
+                persona = grilla_horaria[i][k] 
+            elif persona != grilla_horaria[i][k]:
+                igualesManana = False
+
+        igualesTarde:bool = True
+        persona:str = ""
+        for k in range(4,8,1):
+            if persona == "":
+                persona = grilla_horaria[i][k] 
+            elif persona != grilla_horaria[i][k]:
+                igualesTarde = False
+                
+        res.append((igualesManana,igualesTarde))
+
+    print(res)
+
+ejmalisimo(grilla_horaria)
+            
